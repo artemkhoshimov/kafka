@@ -1,26 +1,17 @@
 package ru.vtb.service.fileProcessing.kafka.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-public class AuditDTO {
-    private String id;
-    private String value;
+@EqualsAndHashCode(callSuper = true)
+@Data
+public class AuditDTO extends AbstractDto {
 
-    public AuditDTO() {
-    }
+    @JsonFormat
+    private String description;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
+    public AuditDTO(String description) {
+        this.description = description;
     }
 }

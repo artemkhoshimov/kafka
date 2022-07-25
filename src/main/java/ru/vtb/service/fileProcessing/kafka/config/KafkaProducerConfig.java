@@ -1,6 +1,5 @@
 package ru.vtb.service.fileProcessing.kafka.config;
 
-import com.fasterxml.jackson.databind.JsonSerializer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.LongSerializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,6 +10,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 import org.springframework.kafka.support.converter.StringJsonMessageConverter;
 import ru.vtb.service.fileProcessing.kafka.dto.AuditDTO;
+import org.springframework.kafka.support.serializer.JsonSerializer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,13 +35,13 @@ public class KafkaProducerConfig {
     }
 
     @Bean
-    public ProducerFactory<Long, AuditDTO> producerStarshipFactory() {
+    public ProducerFactory<Long, Object> producerAuditFactory() {
         return new DefaultKafkaProducerFactory<>(producerConfigs());
     }
 
     @Bean
-    public KafkaTemplate<Long, AuditDTO> kafkaTemplate() {
-        KafkaTemplate<Long, AuditDTO> template = new KafkaTemplate<>(producerStarshipFactory());
+    public KafkaTemplate<Long, Object> kafkaTemplate() {
+        KafkaTemplate<Long, Object> template = new KafkaTemplate<>(producerAuditFactory());
         template.setMessageConverter(new StringJsonMessageConverter());
         return template;
     }

@@ -14,7 +14,6 @@ import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.support.converter.BatchMessagingMessageConverter;
 import org.springframework.kafka.support.converter.StringJsonMessageConverter;
 import ru.vtb.service.fileProcessing.kafka.dto.AbstractDto;
-import ru.vtb.service.fileProcessing.kafka.dto.AuditDTO;
 
 import java.util.HashMap;
 import java.util.Map;
